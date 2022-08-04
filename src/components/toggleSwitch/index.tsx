@@ -1,14 +1,18 @@
 import styled from "@emotion/styled";
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
+import { darkTheme } from "../../styles/theme";
 
-interface ToggleSwitchProps {
-  isOn: boolean;
-  handleToggle: () => void;
-}
+const ToggleSwitch = () => {
+  const { theme, toggleMode } = useContext(ThemeContext);
 
-const ToggleSwitch = ({ isOn, handleToggle }: ToggleSwitchProps) => {
   return (
     <Toggle>
-      <input type="checkbox" checked={isOn} onChange={handleToggle} />
+      <input
+        type="checkbox"
+        checked={theme === darkTheme}
+        onChange={toggleMode}
+      />
       <span />
     </Toggle>
   );
@@ -34,7 +38,7 @@ const Toggle = styled.label`
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    transition: 0.5s;
+    transition: 0.25s;
     border-radius: 34px;
   }
 
@@ -46,7 +50,7 @@ const Toggle = styled.label`
     left: 4px;
     bottom: 4px;
     background-color: white;
-    transition: 0.5s;
+    transition: 0.25s;
     border-radius: 50%;
   }
 
